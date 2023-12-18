@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="Login">
+    <div class="section-left">
+    <div>
       <div>
         <div class="login__image">
         <img src="./../assets/image 555.png" alt="" />
@@ -15,19 +16,22 @@
       <div>
         <input class="password__input" type="text" />
       </div>
-      <div>
+      <div class="button__login">
         <router-link to="/list-form">
           <button class="button__green">Вход</button>
         </router-link>
       </div>
     </div>
-    <div class="cubeImage">
+  </div>
+    <div class="section-right">
+      <div class="">
       <img class="icon1" src="./../assets/image 407.png" alt="" />
       <img class="icon2" src="./../assets/image 408.png" alt="" />
       <img class="icon3" src="./../assets/image 410.png" alt=""/>
       <img class="icon4" src="./../assets/image 411.png" alt=""/>
       <img class="icon5" src="./../assets/image 406.png" alt="">
       <img class="icon6" src="./../assets/image 409.png" alt="">
+    </div>
     </div>
   </div>
 </template>
@@ -53,11 +57,14 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;;
 }
-.Login {
+.section-left {
   display: flex;
   float: left;
-  width: 624px;
+  min-width: 624px;
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
@@ -71,12 +78,11 @@ export default {
   font-weight: 700;
   font-size: larger;
 }
-.cubeImage {
+.section-right {
   float: right;
   background-color: #3EA748;
   width: 100%;
-  height: 902px;
-  position: relative; /* Добавляем позиционирование */
+  height: 100%;
   overflow: hidden; 
 }
 .login__input {
@@ -97,6 +103,7 @@ export default {
   margin-bottom: 40px;
   outline-width: 0;
 }
+
 .button__green {
   width: 160px;
   height: 50px;
@@ -104,35 +111,49 @@ export default {
   border: none;
   background-color: #3EA748;
   color: white;
-  margin-right: 20px;
+
+ 
 }
 .button__green:hover {
   transform: scale(1.1) translateY(-5px);
   background-color: #3EA748;
   transition: 1.4s;
 }
-
-.icon2 {
+.section-right {
   position: relative;
-  top: 20px;
-  left:400px;
+}
+.icon1 {
+  position: absolute;
+  bottom: 634px;
+  left: 48px;
+}
+.icon2 {
+  position: absolute;
+  top: -285px;
+  left:526px;
+
 }
 .icon3 {
-  position: relative;
-  left: 100px;
+  position: absolute;
+  top: 180px;
+  right: 254px;
+  width: 455px;
+  height: 432px;
 }
 .icon4 {
-  position: relative;
-  bottom: 50px;
-  left: 40px;
+
+  position: absolute;
+  top: 100px;
+  right: 180px;
 }
 .icon5 {
-  position: relative;
-  bottom: 8px;
-  right: 150px;
+  position: absolute;;
+  bottom: -24px;
+  right: 550px;
 }
 .icon6 {
-  position: relative;
-  bottom: 220px;
+  position: absolute;
+  bottom: -18px;
+  left: 380px;
 }
 </style>

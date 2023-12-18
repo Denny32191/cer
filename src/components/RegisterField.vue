@@ -23,7 +23,7 @@
         <div class="buttons">
           <router-link to="/list-form">
             <button class="button__form-script">Скрипт</button>
-            <button class="button__form-save">Сохранить</button>
+            <button class="button__form-save" @click="saveForm">Сохранить</button>
           </router-link>
         </div>
       </div>
@@ -94,7 +94,7 @@
         </div>
         <div class="field__add">
           <p class="field__add-text">Добавить страницу формы</p>
-          <button class="button__add">
+          <button class="button__add" @click="addPage">
             <img src="./../assets/plus.png" alt="" />
           </button>
         </div>
@@ -137,11 +137,13 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {
       fields: [],
-     
+      
     };
   },
   methods: {
@@ -159,29 +161,44 @@ export default {
         }
       );
     },
-    // saveData() {
-    //   const formData = {
-    //     fields: this.fields,
-    //   }
-    // },
     removeField(index) {
       this.fields.splice(index, 1);
     },
     isFormValid() {
-      for (const field of this.field) {
+      for (const field of this.fields) {
         if (!field.surname || !field.contact) {
           return false;
         }
       }
       return true;
-    }
+    },
+    saveForm() {
+      if (!this.isFormValid()) {
+        // Проверка, если форма недействительна (например, некоторые поля не заполнены)
+        // Вы можете принять соответствующие меры или отобразить сообщение об ошибке
+        return;
+      }
+
+      const formData = {
+        title: "Форма регистрации участников",
+        author: "Автор :",
+        creationDate: "Дата создания :",
+        fields: this.fields, // Передаем значения полей в объект формы
+      };
+
+      // Вызываем событие "formSaved" и передаем formData в родительский компонент
+      this.$emit("formSaved", formData);
+    },
   },
 };
 </script>
 <style scoped>
 .container {
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
+  
 }
 .section-left {
   float: left;
