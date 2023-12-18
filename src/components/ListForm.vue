@@ -31,9 +31,7 @@
           </div>
           <div>
             <ul class="form__users">
-              <register-field @formSaved="addForm">
-              <li class="form__user" v-for="(form, index) in forms" :key="index">
-                
+              <li v-for="(form, index) in forms" :key="index" class="form__user">
                 <div class="form__user-block">
                   <h3 class="form__user-title">{{ form.title }}</h3>
                   <span class="form__user-author">{{ form.author }} {{ form.surname }}</span>
@@ -44,7 +42,6 @@
                   <button class="button__remove" @click="removeForm(index)">Удалить</button>
                 </div>
               </li>
-            </register-field>
             </ul>
           </div>
         </div>
@@ -55,26 +52,13 @@
 
 <script>
 
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters } = createNamespacedHelpers('forms');
 
 export default {
-  name: "ListForm",
-  data() {
-    return {
-      forms: [
-        {
-          title: "Форма регистрации участников",
-          author: "Автор :",
-          creationDate: "Дата создания :",
-        },
-       
-      ],
-    };
-  },
-  methods: {
-    removeForm(index) {
-      this.forms.splice(index, 1);
-    },
-
+  computed: {
+    ...mapGetters(['stateProperty']),
   },
 };
 </script>

@@ -13,6 +13,7 @@ import ListForm from './components/ListForm.vue';
 import LoginPage from './components/LoginPage.vue';
 import RegisterField from './components/RegisterField.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import { createStore } from 'vuex';
 
 const routes = [
   {
@@ -37,9 +38,27 @@ const router = createRouter({
   routes
 });
 
+const store = createStore({
+  state() {
+    return {
+      // Здесь определите состояния Vuex
+    };
+  },
+  mutations: {
+    // Здесь определите мутации Vuex
+  },
+  actions: {
+    // Здесь определите действия Vuex
+  },
+  getters: {
+    // Здесь определите геттеры Vuex
+  }
+});
+
 export default {
   name: 'App',
-  router
+  router,
+  store
 };
 </script>
 <style>

@@ -137,7 +137,7 @@
 </template>
 
 <script>
-
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -145,6 +145,9 @@ export default {
       fields: [],
       
     };
+  },
+  computed: {
+    ...mapGetters('form', ['fields']),
   },
   methods: {
     addField() {
@@ -173,22 +176,35 @@ export default {
       return true;
     },
     saveForm() {
-      if (!this.isFormValid()) {
+      const formData = {
+        title: 'Форма регистрации участников',
+        author: 'Автор :',
+        creationDate: 'Дата создания :',
+        fields: this.fields,
+      };
+
+      if (!this.isFormValid(formData)) {
         // Проверка, если форма недействительна (например, некоторые поля не заполнены)
         // Вы можете принять соответствующие меры или отобразить сообщение об ошибке
         return;
       }
 
-      const formData = {
-        title: "Форма регистрации участников",
-        author: "Автор :",
-        creationDate: "Дата создания :",
-        fields: this.fields, // Передаем значения полей в объект формы
-      };
-
-      // Вызываем событие "formSaved" и передаем formData в родительский компонент
-      this.$emit("formSaved", formData);
+      this.saveForm(formData);
+      this.$emit('formSaved', formData);
     },
+    methods: {
+    ...mapMutations('form', ['updateField']),
+    addField() {
+      this.updateField({ index: this.fields.length, fieldData: {
+        surname: "",
+        contact: "",
+        required: false,
+      }});
+    },
+    removeField(index) {
+      this.updateField({ index, fieldData: null });
+    },
+  },
   },
 };
 </script>
