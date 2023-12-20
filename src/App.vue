@@ -41,17 +41,17 @@ const router = createRouter({
 const store = createStore({
   state() {
     return {
-      // Здесь определите состояния Vuex
+     
     };
   },
   mutations: {
-    // Здесь определите мутации Vuex
+    
   },
   actions: {
-    // Здесь определите действия Vuex
+    
   },
   getters: {
-    // Здесь определите геттеры Vuex
+   
   }
 });
 
