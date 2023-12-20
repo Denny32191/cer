@@ -1,4 +1,5 @@
 <template>
+  <div class="wrapper">
   <div class="container">
     <div class="section-left">
       <div class="form">
@@ -124,7 +125,8 @@
         <div class="form__consent">
           <input type="checkbox" class="form__user-checkbox" />
           <p class="form__consent-text">
-           
+            Нажимая кнопку «Отправить», я принимаю условия политики
+            конфиденциальности
           </p>
         </div>
         <div>
@@ -133,10 +135,11 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+
 
 export default {
   data() {
@@ -144,9 +147,6 @@ export default {
       fields: [],
       
     };
-  },
-  computed: {
-    ...mapGetters('form', ['fields']),
   },
   methods: {
     addField() {
@@ -175,47 +175,37 @@ export default {
       return true;
     },
     saveForm() {
-      const formData = {
-        title: 'Форма регистрации участников',
-        author: 'Автор :',
-        creationDate: 'Дата создания :',
-        fields: this.fields,
-      };
-
-      if (!this.isFormValid(formData)) {
-        
+      if (!this.isFormValid()) {
+        // Проверка, если форма недействительна (например, некоторые поля не заполнены)
+        // мы можем принять соответствующие меры или отобразить сообщение об ошибке
         return;
       }
 
-      this.saveForm(formData);
-      this.$emit('formSaved', formData);
+      const formData = {
+        title: "Форма регистрации участников",
+        author: "Автор :",
+        creationDate: "Дата создания :",
+        fields: this.fields, // Передаем значения полей в объект формы
+      };
+
+      // Вызываем событие "formSaved" и передаем formData в родительский компонент
+      this.$emit("formSaved", formData);
     },
-    methods: {
-    ...mapMutations('form', ['updateField']),
-    addField() {
-      this.updateField({ index: this.fields.length, fieldData: {
-        surname: "",
-        contact: "",
-        required: false,
-      }});
-    },
-    removeField(index) {
-      this.updateField({ index, fieldData: null });
-    },
-  },
   },
 };
 </script>
 <style scoped>
+.wrapper {
+  width: 100%;
+}
 .container {
-  width: 100vw;
-  height: 100vh;
+  max-width: 1440px;
   overflow: hidden;
   display: flex;
+  margin: 0 auto;
   
 }
 .section-left {
-  float: left;
   width: 434px;
   height: 971px;
 }
