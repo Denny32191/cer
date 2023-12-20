@@ -124,8 +124,7 @@
         <div class="form__consent">
           <input type="checkbox" class="form__user-checkbox" />
           <p class="form__consent-text">
-            Нажимая кнопку «Отправить», я принимаю условия политики
-            конфиденциальности
+           
           </p>
         </div>
         <div>
@@ -184,8 +183,7 @@ export default {
       };
 
       if (!this.isFormValid(formData)) {
-        // Проверка, если форма недействительна (например, некоторые поля не заполнены)
-        // Вы можете принять соответствующие меры или отобразить сообщение об ошибке
+        
         return;
       }
 
